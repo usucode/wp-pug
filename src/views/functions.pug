@@ -1,4 +1,7 @@
 .
   <?php
-  echo "hello";
+  function add_js() {
+    wp_enqueue_script('dist', get_template_directory_uri() . '/js/dist.js');
+  }
+  add_action('wp_enqueue_scripts', 'add_js');
   ?>
