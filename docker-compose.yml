@@ -1,0 +1,26 @@
+version: "3"
+services:
+  wordpress:
+    container_name: wordpress
+    image: wordpress
+    environment:
+      VIRTUAL_HOST: test.local
+      WORDPRESS_DB_PASSWORD: root
+      WORDPRESS_DB_NAME: test-wp
+    restart: always
+    volumes:
+      - ./wp-content:/var/www/html/wp-content/
+    ports:
+      - "80:80"
+    links:
+      - mysql
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
