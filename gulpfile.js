@@ -10,7 +10,7 @@ const dist = "./wp-content/themes/my-theme"
 
 // Styles
 function styles() {
-  return gulp.src('./src/stylus/**/*.styl')
+  return gulp.src(['./src/stylus/**/*.styl', '!./src/stylus/**/_*.styl'])
     .pipe(stylus({
       outputStyle: 'compressed',
       'include css': true
@@ -21,7 +21,7 @@ function styles() {
 
 // Views
 function views() {
-  return gulp.src('./src/views/**/*.pug')
+  return gulp.src(['./src/views/**/*.pug', '!./src/views/**/_*.pug'])
     .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
     .pipe(pug({
       pretty: true
